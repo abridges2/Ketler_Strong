@@ -3,5 +3,59 @@
 } */
 
 .navbar-brand {
-
+    font-family: "Tenor Sans", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: 7px;
+    padding-left: 80px;
+    color: #914716;
+    font-size: larger;
 }
+
+.contact-follow-shop {
+    font-family: "Tenor Sans", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: 7px;
+    padding-left: 80px;
+    color: #914716;
+    font-size: larger;
+    font-style: italic;
+}
+
+.contact-follow-shop:hover {
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nav-item {
+    font-family: "Tenor Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 0px;
+    padding-left: 80px;
+    color: black;
+}
+
+.equal-img {
+    height: 700px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.paragraph-img {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* bigger spacing classes to override bootstrap */
+
+.mb-8 {
+  margin-bottom: 11rem !important; /* ~80px */
+}
+.mb-9 {
+  margin-bottom: 20rem !important; /* ~112px */
+}
+
