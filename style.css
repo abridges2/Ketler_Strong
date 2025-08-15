@@ -6,10 +6,10 @@
     font-family: "Tenor Sans", sans-serif;
     font-weight: 800;
     font-style: normal;
-    letter-spacing: 7px;
+    letter-spacing: 9px;
     padding-left: 80px;
     color: #914716;
-    font-size: larger;
+    font-size: 25px;
 }
 
 .contact-follow-shop {
@@ -19,8 +19,20 @@
     letter-spacing: 7px;
     padding-left: 80px;
     color: #914716;
-    font-size: larger;
+    font-size: x-large;
     font-style: italic;
+}
+
+.story-heading {
+    font-family: "Tenor Sans", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: 7px;
+    padding-left: 80px;
+    color: #914716;
+    font-size: x-large;
+    font-style: italic;
+    text-decoration: underline;
 }
 
 .contact-follow-shop:hover {
@@ -62,5 +74,24 @@
 }
 .mb-9 {
   margin-bottom: 20rem !important; /* ~112px */
+}
+
+/* icons are interpreted as text so font properties will work here. */
+.social-icon {
+    font-size: 65px;
+    text-decoration: none;
+    color: #914716;
+}
+
+.social-icon:hover {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+
+.tiktok-icon {
+
 }
 
