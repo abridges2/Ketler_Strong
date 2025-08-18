@@ -9,6 +9,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
+        <script defer src="script.js"></script>
     <title>Ketler Strong</title>
 </head>
 <body style="background-color: #ede7da;">
@@ -20,6 +21,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end pe-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
+                    <a class="nav-item nav-link pe-5" href="#login.php">Log In <span class="sr-only"></span></a>
                     <a class="nav-item nav-link pe-5" href="#">Contact <span class="sr-only"></span></a>
                     <a class="nav-item nav-link pe-5" href="#">Follow</a>
                     <a class="nav-item nav-link pe-5" href="#">Shop</a>
@@ -29,20 +31,20 @@
 
         <div class="row flex-nowrap align-items-center mb-9">
             <div class="col-5 p-0">
-                <img src="images/Reese_Photo_2.JPG" alt="reese_pic" class="img-fluid equal-img">
+                <img src="images/Reese_Photo_2.JPG" alt="reese_pic" class="animated-element slide-up img-fluid equal-img">
             </div>
 
             <div class="col-7 p-0">
-                <img src="images/Reese_Photo_1_cropped.JPG" alt="reese_pic_2" class="img-fluid equal-img">
+                <img src="images/Reese_Photo_1_cropped.JPG" alt="reese_pic_2" class="animated-element slide-up img-fluid equal-img">
 
 
             </div>
         </div>
 
         <div class="row my-5 align-items-center mb-9">
-            <div class="col-5">
+            <div class="col-5 animated-element slide-left">
                 <h1 class="story-heading p-0 ps-4">Reese's Story</h1>
-                <p class="lead text-dark text-left ps-4"> Reese Ketler's story is one of resillience, determination, and an unwavering commitment to pushing past
+                <p class="text-dark text-left ps-4"> Reese Ketler's story is one of resillience, determination, and an unwavering commitment to pushing past
                      limits. His life was forever changed during a routine hockey game on Devember 19th, 2019, when he collided head-first into the boards shattering four vertabrae
                      and sustaining a spinal cord injury that left him paralyzed from the chest down, with limited hand function. Refusing to let the injury define him, Reese leaned
                      on his determination, his supportive family including his physiotherapist mother April Gobert, and a tight-knit hockey community that railed around him. Over the
@@ -51,25 +53,25 @@
                      journey is a powerful example of reilience, showing that with hard work and the right support, anything is possible. </p>
             </div>
 
-            <div class="col-4">
-                <img src="images/Reese_Leevi_Pic.JPG" alt="reese_pic_2" class="img-fluid paragraph-img">
+            <div class="col-4 animated-element slide-up">
+                <img src="images/Reese_Leevi_Pic.JPG" alt="reese_pic_2" class="animated-element slideimg-fluid paragraph-img">
             </div>
 
-            <div class="col-3">
+            <div class="col-3 animated-element slide-up">
                 <img src="images/Reese_Leevi_Pic_2.JPG" alt="" class="img-fluid paragraph-img">
             </div>
         </div>
 
         <div class="row text-center mb-9 align-items-center">
-            <div class="col text-center">
+            <div class="col text-center animated-element slide-left">
                 <img src="images/Reese_Hockey_Guys.JPG" alt="Reese_Hockey_Guys" class="img-fluid contact-img">
             </div>
 
-            <div class="col">
+            <div class="col animated-element slide-left">
                 <img src="images/Reese_Hockey_Guys_2.JPG" alt="Reese_Hockey_Guys_2" class="img-fluid contact-img">
             </div>
 
-            <div class="col text-center">
+            <div class="col text-center animated-element slide-right">
                  <a href="" class="contact-follow-shop p-0">Contact Reese</a>
 
                 <p class="lead text-center pe-4">
@@ -77,6 +79,9 @@
                     Whether you’re a brand, organization, or creator, he’s eager to explore collaborations that inspire,
                     motivate, and make an impact. Reach out today to start the conversation.
                 </p>
+
+                <button type="button" class="btn btn-secondary">Contact</button>
+
             </div>
 
         </div>
@@ -88,20 +93,39 @@
                     Reese shares his journey, training, and daily life with over 200,000 followers across social media. From motivational insights to behind-the-scenes moments,
                      his content inspires and connects with people worldwide. Follow along on Instagram, TikTok, and YouTube to stay up to date and be part of the community.
                 </p>
-                <a class="social-icon" href="https://tiktok.com/reeseketler" target="_blank">
-                    <i class="bi bi-tiktok"></i>
-                </a>
-                <a class="social-icon" href="https://www.youtube.com/@Reese_Ketler" target="_blank">
-                   <i class="bi bi-youtube"></i>
-                </a>
-                <a class="social-icon" href="https://instagram.com/reeseketler" target="_blank">
-                    <i class="bi bi-instagram"></i>
-                </a>
+                <div class="animated-element social-icons">
+                    <a class="social-icon" href="https://tiktok.com/@reeseketler" target="_blank">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+                    <a class="social-icon" href="https://www.youtube.com/@Reese_Ketler" target="_blank">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a class="social-icon" href="https://instagram.com/reeseketler" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                </div>
+
             </div>
 
             <div class="col-6">
                 <img src="images/Reese_300_Main.JPG" alt="Reese_300_Main" class="paragraph-img">
             </div>
+        </div>
+    </div>
+
+    <div class="row mb-9">
+        <div class="col">
+            <p>1</p>
+        </div>
+        <div class="col">
+            <p class="lead text-center">Reese’s has teamed up with NoBad Apparel for an exciting collaboration that blends iconic chocolatey goodness with streetwear style.
+                The collection features bold, playful designs inspired by Reese’s signature colors and branding, bringing a fun, nostalgic twist to everyday fashion.
+                With limited-edition hoodies, tees, and accessories, the partnership celebrates creativity and individuality,
+                appealing to fans of both Reese’s and contemporary streetwear culture. This collaboration highlights how brands can cross industries to
+                create unique, collectible pieces that resonate with diverse audiences.</p>
+        </div>
+        <div class="col">
+            <img src="images/IMG_E0326.JPG" alt="asfasge" class="paragraph-img">
         </div>
     </div>
 

@@ -78,9 +78,11 @@
 
 /* icons are interpreted as text so font properties will work here. */
 .social-icon {
-    font-size: 65px;
-    text-decoration: none;
-    color: #914716;
+  display: inline-block;
+  font-size: 64px;               /* keep them big */
+  color: #914716;
+  text-decoration: none;
+  margin-right: .5rem;
 }
 
 .social-icon:hover {
@@ -91,7 +93,86 @@
 }
 
 
-.tiktok-icon {
-
+/* Animation Classes */
+/* General transition setup for all animated elements */
+.slide-right,
+.slide-left,
+.slide-up,
+.zoom-in {
+  opacity: 0;
+  transition: all 0.7s ease-out;
 }
 
+/* 1) Slide in from the right */
+.slide-right {
+  transform: translateX(60px);  /* start shifted to the right */
+}
+.slide-right.show {
+  opacity: 1;
+  transform: translateX(0);     /* slide into normal position */
+}
+
+/* 2) Slide in from the left */
+.slide-left {
+  transform: translateX(-60px); /* start shifted to the left */
+}
+.slide-left.show {
+  opacity: 1;
+  transform: translateX(0);     /* slide into normal position */
+}
+
+/* 3) Slide up from the bottom */
+.slide-up {
+  transform: translateY(60px);  /* start shifted downward */
+}
+.slide-up.show {
+  opacity: 1;
+  transform: translateY(0);     /* move up to normal position */
+}
+
+/* Base look: hidden + tiny lift/scale so it feels snappy */
+/* Animation states (stagger comes from nth-child on the wrapper) */
+/* Base size/look */
+.social-icon {
+  display: inline-block;
+  font-size: 64px;
+  color: #914716;
+  text-decoration: none;
+  margin-right: .5rem;
+}
+
+/* Pure fade (no transform), faster, clear */
+.social-icons .social-icon {
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+
+/* Stagger left→right */
+.social-icons .social-icon:nth-of-type(1) { transition-delay: 0.00s; }
+.social-icons .social-icon:nth-of-type(2) { transition-delay: 0.08s; }
+.social-icons .social-icon:nth-of-type(3) { transition-delay: 0.16s; }
+
+/* When wrapper is revealed */
+.social-icons.show .social-icon { opacity: 1; }
+
+/* Hover */
+.social-icons.show .social-icon:hover { opacity: 1; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .social-icons .social-icon,
+  .social-icons.show .social-icon {
+    transition: none !important;
+    opacity: 1 !important;
+  }
+}
+
+
+/* (Nice to have) reduced motion users: skip animation */
+@media (prefers-reduced-motion: reduce) {
+  .slide-right, .slide-left, .slide-up {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
