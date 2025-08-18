@@ -222,3 +222,7 @@
     transform: none !important;
   }
 } */
+
+
+/* Overflow fix */
+html, body { overflow-x: hidden; }
