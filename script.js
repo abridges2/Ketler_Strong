@@ -6,21 +6,14 @@ const options = {
 };
 
 // Callback function
-const callback = (entries) => {
+const callback = (entries, observer) => {
   entries.forEach(entry => {
-    const el = entry.target;
-
     if (entry.isIntersecting) {
-      // Restart the CSS animation each time it enters
-      el.classList.remove("animated");
-      void el.offsetWidth;
-      el.classList.add("animated");
-    } else{
-      el.classList.remove("animated");
+      entry.target.classList.add("animated");
+      observer.unobserve(entry.target);
     }
   });
 };
-
 // New instance of IntersectionObserver
 const observer = new IntersectionObserver(callback, options);
 
