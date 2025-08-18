@@ -3,176 +3,208 @@
 } */
 
 .navbar-brand {
-    font-family: "Tenor Sans", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-    letter-spacing: 9px;
-    padding-left: 80px;
-    color: #914716;
-    font-size: 25px;
+  font-family: "Tenor Sans", sans-serif;
+  font-weight: 800;
+  letter-spacing: 9px;
+  padding-left: 80px;
+  color: #914716;
+  font-size: 25px;
 }
 
 .contact-follow-shop {
-    font-family: "Tenor Sans", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-    letter-spacing: 7px;
-    padding-left: 80px;
-    color: #914716;
-    font-size: x-large;
-    font-style: italic;
+  font-family: "Tenor Sans", sans-serif;
+  font-weight: 800;
+  letter-spacing: 7px;
+  padding-left: 80px;
+  color: #914716;
+  font-size: x-large;
+  font-style: italic;
 }
 
 .story-heading {
-    font-family: "Tenor Sans", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-    letter-spacing: 7px;
-    padding-left: 80px;
-    color: #914716;
-    font-size: x-large;
-    font-style: italic;
-    text-decoration: underline;
+  font-family: "Tenor Sans", sans-serif;
+  font-weight: 800;
+  letter-spacing: 7px;
+  padding-left: 80px;
+  color: #914716;
+  font-size: x-large;
+  font-style: italic;
+  text-decoration: underline;
 }
 
 .contact-follow-shop:hover {
-    color: black;
-    text-decoration: underline;
-    cursor: pointer;
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .nav-item {
-    font-family: "Tenor Sans", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    letter-spacing: 0px;
-    padding-left: 80px;
-    color: black;
+  font-family: "Tenor Sans", sans-serif;
+  font-weight: 500;
+  padding-left: 80px;
+  color: black;
 }
 
-.equal-img {
-    height: 700px;
-    width: 100%;
-    object-fit: cover;
-}
-
-.paragraph-img {
-    height: 500px;
-    width: 100%;
-    object-fit: cover;
-}
-
+.equal-img,
+.paragraph-img,
 .contact-img {
-    height: 500px;
-    width: 100%;
-    object-fit: cover;
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.equal-img { height: 700px; }
+.paragraph-img { height: 500px; }
+.contact-img { height: 500px; }
+
+.contact-button{
+
+
+    width: 125px;
+    height: 50px;
+    margin: 0 8px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #914716;
+    background-color: #f5f1eb;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-button:hover{
+    transform: translateY(-6px) scale(1.1);
+    color: #fff;
+    background-color: #914716;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin: 0 8px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #914716;
+    background-color: #f5f1eb;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.social-icon:hover {
+  transform: translateY(-6px) scale(1.1);
+  color: #fff;
+  background-color: #914716;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 /* bigger spacing classes to override bootstrap */
+.mb-8 { margin-bottom: 11rem !important; /* ~176px */ }
+.mb-9 { margin-bottom: 20rem !important; /* ~320px */ }
 
-.mb-8 {
-  margin-bottom: 11rem !important; /* ~80px */
-}
-.mb-9 {
-  margin-bottom: 20rem !important; /* ~112px */
-}
+/* ===================== */
+/* Section Animations    */
+/* ===================== */
 
-/* icons are interpreted as text so font properties will work here. */
-.social-icon {
-  display: inline-block;
-  font-size: 64px;               /* keep them big */
-  color: #914716;
-  text-decoration: none;
-  margin-right: .5rem;
+.fade-in {
+  animation: fade-in .7s ease;
+  animation-fill-mode: both;
+  animation-play-state: paused;
 }
 
-.social-icon:hover {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-    transition-duration: 0.2s;
+.fade-in-up {
+  animation: fade-in-up .7s ease;
+  animation-fill-mode: both;
+  animation-play-state: paused;
 }
 
+.fade-in-left {
+  animation: fade-in-left .7s ease;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
 
-/* Animation Classes */
-/* General transition setup for all animated elements */
-.slide-right,
+.fade-in-right {
+  animation: fade-in-right .7s ease;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+
+.animated {
+  animation-play-state: running;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.social-icons .animated-element { animation-delay: .10s; }
+.social-icons .animated-element:nth-child(2) { animation-delay: .20s; }
+.social-icons .animated-element:nth-child(3) { animation-delay: .30s; }
+/* .slide-right,
 .slide-left,
 .slide-up,
 .zoom-in {
   opacity: 0;
-  transition: all 0.7s ease-out;
+  transition: transform .7s ease-out, opacity .7s ease-out;
+  will-change: transform, opacity;
 }
 
-/* 1) Slide in from the right */
-.slide-right {
-  transform: translateX(60px);  /* start shifted to the right */
-}
-.slide-right.show {
-  opacity: 1;
-  transform: translateX(0);     /* slide into normal position */
-}
+.slide-right { transform: translateX(60px); }
+.slide-right.show { opacity: 1; transform: translateX(0); }
 
-/* 2) Slide in from the left */
-.slide-left {
-  transform: translateX(-60px); /* start shifted to the left */
-}
-.slide-left.show {
-  opacity: 1;
-  transform: translateX(0);     /* slide into normal position */
-}
+.slide-left { transform: translateX(-60px); }
+.slide-left.show { opacity: 1; transform: translateX(0); }
 
-/* 3) Slide up from the bottom */
-.slide-up {
-  transform: translateY(60px);  /* start shifted downward */
-}
-.slide-up.show {
-  opacity: 1;
-  transform: translateY(0);     /* move up to normal position */
-}
+.slide-up { transform: translateY(60px); }
+.slide-up.show { opacity: 1; transform: translateY(0); } */
 
-/* Base look: hidden + tiny lift/scale so it feels snappy */
-/* Animation states (stagger comes from nth-child on the wrapper) */
-/* Base size/look */
-.social-icon {
-  display: inline-block;
-  font-size: 64px;
-  color: #914716;
-  text-decoration: none;
-  margin-right: .5rem;
-}
-
-/* Pure fade (no transform), faster, clear */
-.social-icons .social-icon {
-  opacity: 0;
-  transition: opacity .4s ease;
-}
-
-/* Stagger left→right */
-.social-icons .social-icon:nth-of-type(1) { transition-delay: 0.00s; }
-.social-icons .social-icon:nth-of-type(2) { transition-delay: 0.08s; }
-.social-icons .social-icon:nth-of-type(3) { transition-delay: 0.16s; }
-
-/* When wrapper is revealed */
-.social-icons.show .social-icon { opacity: 1; }
-
-/* Hover */
-.social-icons.show .social-icon:hover { opacity: 1; }
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .social-icons .social-icon,
-  .social-icons.show .social-icon {
-    transition: none !important;
-    opacity: 1 !important;
-  }
-}
-
-
-/* (Nice to have) reduced motion users: skip animation */
-@media (prefers-reduced-motion: reduce) {
+/* ===================== */
+/* Reduced Motion        */
+/* ===================== */
+/* @media (prefers-reduced-motion: reduce) {
   .slide-right, .slide-left, .slide-up {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
-}
+} */
