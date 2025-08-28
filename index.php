@@ -12,7 +12,7 @@
         <script defer src="script.js"></script>
     <title>Ketler Strong</title>
 </head>
-<body style="background-color: #ede7da;">
+<body>
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg navbar-light py-5 sticky-top shadow-sm">
             <a class="navbar-brand animated-element fade-in-left" href="#">Ketler Strong</a>
@@ -22,9 +22,9 @@
             <div class="collapse navbar-collapse justify-content-end pe-2" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="#login.php">Log In <span class="sr-only"></span></a>
-                    <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="#">Contact <span class="sr-only"></span></a>
+                    <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="contact.php">Contact <span class="sr-only"></span></a>
                     <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="#">Follow</a>
-                    <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="#">Shop</a>
+                    <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="https://nobad.store/">Shop</a>
                 </div>
             </div>
         </nav>
@@ -62,6 +62,7 @@
             </div>
         </div>
 
+        <!-- CONTACT SECTION -->
         <div class="row g-0 text-center mb-9 align-items-center">
             <div class="col-4">
                 <img src="images/Reese_300_Main.JPG" alt="Reese_300_Main_Picture" class="paragraph-img animated-element fade-in-left">
@@ -78,7 +79,7 @@
                     motivate, and make an impact. Reach out today to start the conversation.
                 </p>
 
-                <button type="button" class="btn btn contact-button">Contact</button>
+                <a href="contact.php" class="btn btn-secondary contact-button" role="button">Contact</a>
 
             </div>
 
