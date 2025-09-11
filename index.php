@@ -8,18 +8,19 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Allura&family=Tenor+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <script defer src="script.js"></script>
     <title>Ketler Strong</title>
 </head>
 <body>
     <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg navbar-light py-5 sticky-top shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light py-3 sticky-top shadow-sm flex-column">
             <a class="navbar-brand animated-element fade-in-left" href="#">Ketler Strong</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end pe-2" id="navbarNavAltMarkup">
+            <div class="collapse navbar-collapse justify-content-end pe-2 pb-4" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="#login.php">Log In <span class="sr-only"></span></a>
                     <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="contact.php">Contact <span class="sr-only"></span></a>
@@ -44,7 +45,7 @@
         <div class="row g-0 my-5 align-items-center mb-9">
             <div class="col-5 animated-element fade-in-left text-center">
                 <h1 class="story-heading p-0 ps-4">Reese's Story</h1>
-                <p class="lead text-dark text-left ps-4 pe-4"> Reese Ketler's story is one of resillience, determination, and an unwavering commitment to pushing past
+                <p class="lead text-left fw-normal ps-4 pe-4"> Reese Ketler's story is one of resillience, determination, and an unwavering commitment to pushing past
                      limits. His life was forever changed during a routine hockey game on Devember 19th, 2019, when he collided head-first into the boards shattering four vertabrae
                      and sustaining a spinal cord injury that left him paralyzed from the chest down, with limited hand function. Refusing to let the injury define him, Reese leaned
                      on his determination, his supportive family including his physiotherapist mother April Gobert, and a tight-knit hockey community that railed around him. Over the
@@ -71,15 +72,16 @@
                 <img src="images/Reese_Rooftop_Pic.jpeg" alt="Reese_Rooftop_Picture" class="paragraph-img animated-element fade-in-up">
             </div>
             <div class="col-4 text-center animated-element fade-in-right">
-                 <a href="" class="contact-follow-shop p-0">Contact Reese</a>
+                 <a href="" class="story-heading">Contact Reese</a>
 
                 <p class="lead text-center ps-4 pe-4">
                     Reese is always open to exciting partnership opportunities that align with his values and vision.
                     Whether you’re a brand, organization, or creator, he’s eager to explore collaborations that inspire,
                     motivate, and make an impact. Reach out today to start the conversation.
+                    <a href="contact.php" class="btn btn-secondary btn-custom" role="button">Contact</a>
                 </p>
 
-                <a href="contact.php" class="btn btn-secondary contact-button" role="button">Contact</a>
+
 
             </div>
 
@@ -130,7 +132,9 @@
                 The collection features bold, playful designs inspired by Reese’s signature colors and branding, bringing a fun, nostalgic twist to everyday fashion.
                 With limited-edition hoodies, tees, and accessories, the partnership celebrates creativity and individuality,
                 appealing to fans of both Reese’s and contemporary streetwear culture. This collaboration highlights how brands can cross industries to
-                create unique, collectible pieces that resonate with diverse audiences.</p>
+                create unique, collectible pieces that resonate with diverse audiences.
+                <a href="contact.php" class="btn btn-secondary btn-custom" role="button">Shop</a>
+            </p>
         </div>
     </div>
 

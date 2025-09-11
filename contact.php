@@ -16,51 +16,56 @@ require 'vendor/autoload.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      <link rel="stylesheet" href="style.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="style.css">
+      <link href="https://fonts.googleapis.com/css2?family=Allura&family=Tenor+Sans&display=swap" rel="stylesheet">
       <script defer src="script.js"></script>
   <title>Contact</title>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light py-5 sticky-top shadow-sm">
-    <a class="navbar-brand animated-element fade-in-left" href="#">Ketler Strong</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end pe-2" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="#login.php">Log In <span class="sr-only"></span></a>
-        <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="contact.php">Contact <span class="sr-only"></span></a>
-        <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="#">Follow</a>
-        <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="https://nobad.store/">Shop</a>
+  <nav class="navbar navbar-expand-lg py-3 sticky-top shadow-sm flex-column">
+      <a class="navbar-brand animated-element fade-in-left" href="#">Ketler Strong</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end pe-2 pb-4" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+              <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="#login.php">Log In <span class="sr-only"></span></a>
+              <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="contact.php">Contact <span class="sr-only"></span></a>
+              <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="#">Follow</a>
+              <a class="nav-item nav-link pe-5 animated-element fade-in-right" href="https://nobad.store/">Shop</a>
+          </div>
       </div>
-    </div>
   </nav>
 
-  <div class="text-center my-4">
-    <div class="small text-muted">Partnerships • Media • Speaking</div>
-    <h2 class="mt-1">Get in touch</h2>
-    <p class="lead mb-0">Tell us a bit about your inquiry and we’ll get back to you.</p>
-  </div>
-
-  <div class="container rounded contact-container py-3 my-5">
-
-    <form action="sendmail.php" method="POST">
+  <div class="container rounded contact-container py-2 my-1">
+`
+    <form action="sendmail.php" method="POST" novalidate>
+      <?php if (!empty($_SESSION['errors'])): ?>
+        <div class="alert alert-danger">
+          <ul class="mb-0">
+            <?php foreach ($_SESSION['errors'] as $msg): ?>
+              <li><?= htmlspecialchars($msg, ENT_QUOTES, 'UTF-8') ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+        <?php unset($_SESSION['errors']); ?>
+      <?php endif; ?>
 
     <!-- Name Row -->
     <div class="row">
         <div class="col-md-6 mb-3">
           <label for="fname" class="form-label">First Name:</label>
-          <input type="text" id="fname" name="fname" value="John" required class="form-control">
+          <input type="text" id="fname" name="fname" placeholder="John" required class="form-control">
         </div>
         <div class="col-md-6 mb-3">
           <label for="lname" class="form-label">Last Name:</label>
-          <input type="text" id="lname" name="lname" value="Doe" required class="form-control">
+          <input type="text" id="lname" name="lname" placeholder="Doe" required class="form-control">
         </div>
       </div>
 
@@ -101,7 +106,7 @@ require 'vendor/autoload.php';
 
     <div class="mb-4">
       <label for="message" class="form-label">Message</label>
-      <textarea class="form-control" id="message" name="message" rows="4" placeholder="This will be the body of the email sent to Reese's team." required></textarea>
+      <textarea class="form-control" id="message" name="message" rows="4" placeholder="Body of the email sent to Reese's team." required></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary contact-button">Send</button>

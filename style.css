@@ -1,14 +1,26 @@
 body {
-    background-color: #ede7da !important;
+    background-color: #fff !important;
 }
 
+
+.equal-img,
+.paragraph-img,
+.contact-img {
+  border: 2px solid rgba(50, 59, 87, 0.15);
+  box-shadow: 0 2px 6px rgba(50, 59, 87, 0.1);
+  border-radius: 8px;
+}
+
+
+
 .navbar-brand {
-  font-family: "Tenor Sans", sans-serif;
-  font-weight: 800;
-  letter-spacing: 9px;
-  padding-left: 80px;
-  color: #914716;
-  font-size: 25px;
+  font-family: "Allura", cursive;
+  font-weight: 400;
+  font-style: normal;
+  /* letter-spacing: 9px; */
+  /* padding-left: 80px; */
+  color: black;
+  font-size: 80px;
 }
 
 .contact-follow-shop {
@@ -22,14 +34,13 @@ body {
 }
 
 .story-heading {
-  font-family: "Tenor Sans", sans-serif;
-  font-weight: 800;
-  letter-spacing: 7px;
-  padding-left: 80px;
-  color: #914716;
-  font-size: x-large;
-  font-style: italic;
-  text-decoration: underline;
+  font-family: "Allura", cursive;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 50px;
+  text-decoration: none;
+  margin-bottom: 0.25rem;  /* adjust this value to taste */
+  color: #112c7d;
 }
 
 .contact-follow-shop:hover {
@@ -85,6 +96,42 @@ body {
     text-decoration: none;
 }
 
+.contact-button,
+.btn-custom {
+    display: inline-block;
+    width: 100%;
+    max-width: 280px;
+    margin: 16px auto 0;
+    padding: 12px 20px;
+
+    border: 0;
+    border-radius: 999px;
+
+    font-family: "Tenor Sans", sans-serif;
+    font-weight: 700;
+    letter-spacing: .5px;
+    font-size: 1rem;
+    line-height: 1;
+
+    color: #fff;
+    background-color: #112c7d; /* DodgerBlue base */
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+
+    transition: transform .2s ease, background-color .2s ease, color .2s ease, box-shadow .2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,.08);
+}
+
+/* Hover swap */
+.contact-button:hover,
+.btn-custom:hover {
+    transform: translateY(-3px);
+    background-color: black;
+    color: #fff;
+    box-shadow: 0 8px 16px rgba(0,0,0,.18);
+}
+
 .contact-button:hover {
     transform: translateY(-3px);
     background-color: #914716;
@@ -101,8 +148,8 @@ body {
     margin: 0 8px;
     border-radius: 50%;
     font-size: 1.5rem;
-    color: #914716;
-    background-color: #f5f1eb;
+    color: white;
+    background-color:#112c7d;
     text-decoration: none;
     transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -110,17 +157,18 @@ body {
 .social-icon:hover {
   transform: translateY(-6px) scale(1.1);
   color: #fff;
-  background-color: #914716;
+  background-color: black;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .footer-color{
     border-top: groove;
-    border-color: #914716;
+    border-color:black;
+    background-color: #f5f1eb;
 }
 
 footer a{
-    color: #914716;
+    color: black;
     text-decoration: none;
     transition: color 0.3s ease;
 }

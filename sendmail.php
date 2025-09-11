@@ -1,92 +1,141 @@
 <?php
 session_start();
 
-// Retrieve and trim the form inputs and if the input is null assign empty string so validation checks do not pass.
-$old = [
-  'fname'   => clean($_POST['fname']   ?? ''),
-  'lname'   => clean($_POST['lname']   ?? ''),
-  'email'   => trim($_POST['email']    ?? ''),
-  'reason'  => clean($_POST['reason']  ?? ''),
-  'subject' => clean($_POST['subject'] ?? ''),
-  'message' => trim($_POST['message']  ?? ''),
-];
-$_SESSION['old'] = $old;
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+  header('Location: contact.php', true, 303);
+  exit;
+}
 
-// Pre-defined array to hold errors
+/* ===== collect ===== */
+$fname   = trim($_POST['fname']   ?? '');
+$lname   = trim($_POST['lname']   ?? '');
+$email   = str_replace(["\r","\n"," "], '', trim($_POST['email'] ?? '')); // prepare for validation
+$reason  = trim($_POST['reason']  ?? '');
+$subject = trim($_POST['subject'] ?? '');
+$message = rtrim((string)($_POST['message'] ?? ''));
+
+/* keep for repopulation on error */
+$_SESSION['old'] = [
+  'fname'   => $fname,
+  'lname'   => $lname,
+  'email'   => $email,
+  'reason'  => $reason,
+  'subject' => $subject,
+  'message' => $message,
+];
+
+/* ===== validate ===== */
 $errors = [];
 
-if ($old['fname'] === '' || $old['lname'] === '' || $old['email'] === '' || $old['subject'] === '' || $old['message'] === '') {
+/* required */
+if ($fname === '' || $lname === '' || $email === '' || $subject === '' || $message === '') {
   $errors[] = 'All fields are required. Please fill out the form and try again.';
 }
 
-/* friendlier name validation: letters, spaces, hyphens, apostrophes, dots */
+/* friendly name check */
 $NAME_RX = '/^[\p{L}\p{M}\'\-\.\s]+$/u';
-if ($old['fname'] !== '' && !preg_match($NAME_RX, $old['fname'])) {
+if ($fname !== '' && !preg_match($NAME_RX, $fname)) {
   $errors[] = 'First name looks invalid (letters, spaces, hyphens, apostrophes only).';
 }
-if ($old['lname'] !== '' && !preg_match($NAME_RX, $old['lname'])) {
+if ($lname !== '' && !preg_match($NAME_RX, $lname)) {
   $errors[] = 'Last name looks invalid (letters, spaces, hyphens, apostrophes only).';
 }
 
-/* email: no spaces/newlines + FILTER_VALIDATE_EMAIL */
-if (preg_match('/\s/', $old['email']) || preg_match('/[\r\n\x00-\x1F\x7F]/', $old['email'])) {
-  $errors[] = 'Email contains invalid characters.';
-} elseif (!filter_var($old['email'], FILTER_VALIDATE_EMAIL)) {
-  $errors[] = 'Please enter a valid email address (e.g., name@example.com).';
-}
-elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+/* email format (after cleanup) */
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   $errors[] = 'Please enter a valid email address (e.g., name@example.com).';
 }
 
+/* reason whitelist */
 $allowedReasons = ['Partnership','Media','Speaking','Other'];
-if (!in_array($old['reason'], $allowedReasons, true)) {
+if (!in_array($reason, $allowedReasons, true)) {
   $errors[] = 'Please select a reason for contacting.';
 }
 
-// Mailer set up
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'path/to/PHPMailer/src/Exception.php';
-require 'path/to/PHPMailer/src/PHPMailer.php';
-require 'path/to/PHPMailer/src/SMTP.php';
-
-//Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
-
-try {
-    //Server settings
-    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'user@example.com';                     //SMTP username
-    $mail->Password   = 'secret';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-    //Recipients
-    $mail->setFrom('from@example.com', 'Mailer');
-    $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
-    $mail->addAddress('ellen@example.com');               //Name is optional
-    $mail->addReplyTo('info@example.com', 'Information');
-    $mail->addCC('cc@example.com');
-    $mail->addBCC('bcc@example.com');
-
-    //Attachments
-    $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-    $mail->send();
-    echo 'Message has been sent';
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+/* back to form if any errors */
+if (!empty($errors)) {
+  $_SESSION['errors'] = $errors;
+  header('Location: contact.php', true, 303);
+  exit;
 }
 
-?>
+/* ===== send email via PHPMailer (.env-driven) ===== */
+require __DIR__ . '/vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+use Dotenv\Dotenv;
+
+/* load .env (same folder as this file) */
+if (file_exists(__DIR__.'/.env')) {
+  Dotenv::createImmutable(__DIR__)->load();
+}
+
+/* env vars (Mailtrap Sandbox in your .env) */
+$HOST      = $_ENV['SMTP_HOST']         ?? 'sandbox.smtp.mailtrap.io';
+$PORT      = (int)($_ENV['SMTP_PORT']   ?? 587);
+$USER      = $_ENV['SMTP_USERNAME']     ?? '';
+$PASS      = $_ENV['SMTP_PASSWORD']     ?? '';
+$FROM      = $_ENV['SMTP_FROM']         ?? $USER;
+$FROM_NAME = $_ENV['SMTP_FROM_NAME']    ?? 'Ketler Strong Website';
+$TO        = $_ENV['SMTP_TO']           ?? 'anything@yourtest.test';
+
+/* header-safe values */
+$replyToName = str_replace(["\r","\n"], ' ', trim("$fname $lname"));
+$subjectLine = str_replace(["\r","\n"], ' ', $subject);
+
+/* build bodies (escape user text for HTML) */
+$htmlBody  = '<h2>New contact form submission</h2>';
+$htmlBody .= '<p><strong>Name:</strong> '.htmlspecialchars($replyToName, ENT_QUOTES,'UTF-8').'</p>';
+$htmlBody .= '<p><strong>Email:</strong> '.htmlspecialchars($email, ENT_QUOTES,'UTF-8').'</p>';
+$htmlBody .= '<p><strong>Reason:</strong> '.htmlspecialchars($reason, ENT_QUOTES,'UTF-8').'</p>';
+$htmlBody .= '<p><strong>Subject:</strong> '.htmlspecialchars($subject, ENT_QUOTES,'UTF-8').'</p>';
+$htmlBody .= '<hr><p><strong>Message:</strong><br>'.nl2br(htmlspecialchars($message, ENT_QUOTES,'UTF-8')).'</p>';
+
+$textBody =
+  "New contact form submission\n\n".
+  "Name: $replyToName\n".
+  "Email: $email\n".
+  "Reason: $reason\n".
+  "Subject: $subject\n\n".
+  $message;
+
+try {
+  $mail = new PHPMailer(true);
+
+  /* transport */
+  $mail->isSMTP();
+  $mail->Host       = $HOST;
+  $mail->Port       = $PORT;
+  $mail->SMTPAuth   = true;
+  $mail->Username   = $USER;
+  $mail->Password   = $PASS;
+  $mail->SMTPSecure = ($PORT === 465)
+    ? PHPMailer::ENCRYPTION_SMTPS
+    : PHPMailer::ENCRYPTION_STARTTLS;
+  $mail->CharSet    = 'UTF-8';
+
+  /* envelope & headers */
+  $mail->setFrom($FROM, $FROM_NAME);
+  $mail->addAddress($TO);
+  $mail->addReplyTo($email, $replyToName);
+
+  /* content */
+  $mail->isHTML(true);
+  $mail->Subject = '['.$reason.'] '.$subjectLine;
+  $mail->Body    = $htmlBody;
+  $mail->AltBody = $textBody;
+
+  $mail->send();
+
+  unset($_SESSION['old']);
+  $_SESSION['flash_success'] = 'Thanks! Your message has been sent.';
+  header('Location: contact.php', true, 303);
+  exit;
+
+} catch (Exception $e) {
+  $_SESSION['flash_error'] = 'Email failed to send. ('.$mail->ErrorInfo.')';
+  header('Location: contact.php', true, 303);
+  exit;
+}
