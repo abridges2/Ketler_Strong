@@ -3,38 +3,40 @@ body {
 }
 
 .navbar-brand {
-  font-family: "Tenor Sans", sans-serif;
-  font-weight: 800;
-  letter-spacing: 9px;
+  font-family: "Allura", cursive;
+  font-weight: 400;
+  font-style: italic;
   padding-left: 80px;
   color: #914716;
-  font-size: 25px;
+  font-size: 60px;
+  letter-spacing: 15px;
 }
 
 .contact-follow-shop {
-  font-family: "Tenor Sans", sans-serif;
+  font-family: "Allura", cursive;
   font-weight: 800;
-  letter-spacing: 7px;
+  letter-spacing: 5px;
   padding-left: 80px;
   color: #914716;
-  font-size: x-large;
+  font-size: 40px;
   font-style: italic;
+  text-decoration: none;
 }
 
 .story-heading {
-  font-family: "Tenor Sans", sans-serif;
+  font-family: "Allura", cursive;
   font-weight: 800;
-  letter-spacing: 7px;
+  letter-spacing: 5px;
   padding-left: 80px;
   color: #914716;
-  font-size: x-large;
+  font-size: 40px;
   font-style: italic;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .contact-follow-shop:hover {
   color: black;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -50,11 +52,67 @@ body {
 .contact-img {
   display: block;
   width: 100%;
+  height: 100%;
   object-fit: cover;
 }
-.equal-img { height: 700px; }
-.paragraph-img { height: 500px; }
-.contact-img { height: 500px; }
+
+.of-cover { object-fit: cover; }
+.op-center { object-position: 50% 50%; }
+.op-top    { object-position: 50% 20%; }
+.op-right  { object-position: 65% 50%; } /* tweak this per photo */
+.op-left   { object-position: 35% 50%; }
+
+/* --- HERO: responsive aspect + safe minimums --- */
+
+/* Make the <img> fill the ratio box so the ratio actually controls height */
+.ratio-hero img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Phones: a bit taller so it feels intentional */
+.ratio.ratio-hero {
+  --bs-aspect-ratio: 70%;   /* ~1.43:1  (taller than 16:9) */
+  min-height: 300px;        /* don't let it get postage-stamp small */
+}
+
+/* ≥576px (sm): flatten slightly */
+@media (min-width: 576px) {
+  .ratio.ratio-hero {
+    --bs-aspect-ratio: 62.5%; /* ~16:10 */
+    min-height: 320px;
+  }
+}
+
+/* ≥768px (md): columns are 50% wide now — make hero taller here */
+@media (min-width: 768px) {
+  .ratio.ratio-hero {
+    --bs-aspect-ratio: 85%;   /* taller so the two-up hero keeps presence */
+    min-height: 380px;
+  }
+}
+
+/* ≥992px (lg): go back to a classic shallow banner feel */
+@media (min-width: 992px) {
+  .ratio.ratio-hero {
+    --bs-aspect-ratio: 70%;  /* taller than 16:9 */
+    min-height: 520px;       /* optional floor; tweak to taste */
+  }
+}
+
+/* ≥1200px (xl) — keep it tall on big monitors */
+@media (min-width: 1200px) {
+  .ratio.ratio-hero {
+    --bs-aspect-ratio: 70%;
+    min-height: 560px;
+  }
+}
+
+/* ≥1400px (xxl) — (optional) a touch taller on ultra-wide screens */
+@media (min-width: 1400px) {
+  .ratio.ratio-hero {
+    --bs-aspect-ratio: 72%;
+    min-height: 600px;
+  }
+}
+
 
 .contact-button {
     display: block;
@@ -92,19 +150,26 @@ body {
     box-shadow: 0 8px 16px rgba(0,0,0,.18);
 }
 
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centers the row */
+  gap: 12px;               /* even spacing between icons */
+}
+
 .social-icon {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    margin: 0 8px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    color: #914716;
-    background-color: #f5f1eb;
-    text-decoration: none;
-    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin: 0; /* gap handles spacing now */
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #914716;
+  background-color: #f5f1eb;
+  text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .social-icon:hover {
@@ -215,6 +280,41 @@ footer a:hover{
 
 /* Overflow fix */
 html, body { overflow-x: hidden; }
+
+/* Removing left padding by default to fix responsive design */
+.navbar-brand,
+.story-heading,
+.contact-follow-shop,
+.nav-item {
+  padding-left: 0;
+}
+
+/* Padding to the navbar and headings */
+@media (min-width: 992px) {
+  .navbar-brand,
+  .story-heading,
+  .contact-follow-shop,
+  .nav-item {
+    padding-left: 2rem; /* ~32px; bump to 3rem if you want more */
+  }
+}
+
+
+/* Adjust headings for mobile */
+@media (max-width: 576px) {
+  .navbar-brand,
+  .contact-follow-shop,
+  .story-heading {
+    padding-left: 0;
+    letter-spacing: 1px;
+    font-size: clamp(24px, 8vw, 40px);
+  }
+  .nav-item { padding-left: 0; }
+
+  /* So sections don’t have massive gaps on mobile */
+  .mb-8 { margin-bottom: 4rem !important; }
+  .mb-9 { margin-bottom: 5rem !important; }
+}
 
 
 
